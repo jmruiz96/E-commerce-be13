@@ -12,7 +12,7 @@ Because this application won’t be deployed, you’ll also need to provide a li
 
 ```md
 AS A manager at an internet retail company
-I WANT a back end for my e-commerce website that uses the latest technologies
+I WANT a back end for my e-commerce website that uses the latest technologies.
 SO THAT my company can compete with other e-commerce companies
 ```
 
