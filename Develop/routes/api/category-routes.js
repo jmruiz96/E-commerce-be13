@@ -22,21 +22,21 @@ router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   try {
-    const { cId } = req.params;
-    const getCat = await Category.findByPk(cId, {
+    const { id } = req.params;
+    const getCat = await Category.findByPk(id, {
 
       include: [{ model: Product }]
 
     });
 
     if (!getCat) {
-      res.status(404).json({ message: `Cannot find category id:${cId} :( ` });
+      res.status(404).json({ message: `Cannot find category id:${id} :( ` });
 
       return; }
     res.status(200).json(getCat);
 
   } catch (err) {
-    
+
     res.status(400).json(err)
   }
 
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
-    const { uId } = req.params;
+    const { id } = req.params;
     const updCat = await Category.update(
       {
         category_name: req.body.category_name,
@@ -70,10 +70,10 @@ router.put('/:id', async (req, res) => {
     );
 
     if (!updCat) {
-      res.status(404).json({ message: `Cannot find category id:${uId} :(` });
+      res.status(404).json({ message: `Cannot find category id:${id} :(` });
       return;
     };
-    res.status(200).json({ message: `Updated category id:${uId}` })
+    res.status(200).json({ message: `Updated category id:${id}` })
   } catch (err) {
   }
 });
@@ -82,7 +82,7 @@ router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   //
   try {
-    const { dId } = req.params
+    const { id } = req.params
     const delCat = await Category.destroy({
       where: {
         id: id
@@ -90,9 +90,9 @@ router.delete('/:id', async (req, res) => {
     }
   )
     if (!delCat) {
-      res.status(404).json({ message: `Cannot find category id:${dId} :(` })
+      res.status(404).json({ message: `Cannot find category id:${id} :(` })
     }
-    res.status(200).json({ message: `Deleted category id:${dId}` })
+    res.status(200).json({ message: `Deleted category id:${id}` })
   } catch (err) {
 
     res.status(400).json(err)

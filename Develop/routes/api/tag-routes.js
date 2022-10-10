@@ -27,15 +27,15 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Product data
   try {
 
-    const { tId } = req.params;
-
+    const { id } = req.params;
+// cannot chang id
     const getTag = await Tag.findByPk(id, {
       include: [{ model: Product }]
     });
 
     if (!getTag) {
 
-      res.status(404).json({ message: `Cannot find tag id:${tId}` });
+      res.status(404).json({ message: `Cannot find tag id:${id}` });
 
       return;
     }
@@ -123,7 +123,8 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   try {
-    const { dId } = req.params
+    const { id } = req.params
+    // cannot customize this {id}
     const delTag = await Tag.destroy({
       where: {
         id: id
@@ -132,9 +133,9 @@ router.delete('/:id', async (req, res) => {
 
     if (!delTag) {
 
-      res.status(404).json({ message: `Cannot find tag id:${dId}` })
+      res.status(404).json({ message: `Cannot find tag id:${id}` })
     }
-    res.status(200).json({ message: `Deleted tag id:${dId}` })
+    res.status(200).json({ message: `Deleted tag id:${id}` })
 
   } catch (err) {
 
